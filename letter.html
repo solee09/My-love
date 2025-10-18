@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>untoldcoding</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=VT323"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="textCont"></div>
+    <div class="song">
+      <div class="title">Tap to Play Sound</div>
+      <div class="pause" onclick="togglePlay()">🔊</div>
+      <div class="player">
+        <audio
+          class="audio"
+          src="C:\Users\Sol\Downloads\web\ontario.mp3"
+          type="audio/mpeg"
+          loop
+        ></audio>
+      </div>
+    </div>
+    <script src="untoldcoding.js"></script>
+    <script>
+      var pause = document.querySelector(".pause");
+      var audio = document.querySelector(".audio");
+
+      // Set initial state
+      pause.innerHTML = "🔊"; // Show play icon initially
+      pause.style.cursor = "pointer"; // Make it clear it's clickable
+
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play()
+            .then(() => {
+              // Audio started successfully
+              pause.innerHTML = "🔇"; // Show mute icon when playing
+              pause.style.color = "#fff"; // Optional: change color when playing
+            })
+            .catch((error) => {
+              console.error("Error playing audio:", error);
+              alert("Could not play audio. Please check if ontario.mp3 exists in your project folder.");
+            });
+        } else {
+          audio.pause();
+          pause.innerHTML = "🔊"; // Show speaker icon when paused
+          pause.style.color = "#848484";
+        }
+      }
+    </script>
+    <script src="new.js"></script>
+  </body>
+</html>
